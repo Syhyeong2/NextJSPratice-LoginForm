@@ -1,15 +1,13 @@
 "use server";
+import { emailRegex, passwordRegex } from "@/lib/constants";
 import { z } from "zod";
-
-const emailRegex = new RegExp(/^[a-zA-Z0-9._%+-]+@zod\.com$/);
-const passwordRegex = new RegExp(/^(?=.*[0-9]).*$/);
 
 const formSchema = z.object({
   email: z
     .string()
     .email()
     .regex(emailRegex, "Only @zod.com emails are allowed"),
-  username: z.string().min(4, "Username should be at least 5 characters long"),
+  username: z.string().min(5, "Username should be at least 5 characters long"),
   password: z
     .string()
     .min(10, "Password should be at least 10 characters long")
@@ -23,9 +21,12 @@ export async function handleForm(prevstate: any, formData: FormData) {
     password: formData.get("password"),
   };
   const result = formSchema.safeParse(data);
+
   if (!result.success) {
-    return result.error.flatten();
+    return { token: false, error: result.error.flatten() };
+  } else if (result.success) {
+    return { token: true };
   } else {
-    console.log(result.data);
+    console.log(result);
   }
 }
