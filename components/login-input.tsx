@@ -1,3 +1,5 @@
+import { InputHTMLAttributes } from "react";
+
 interface LoginInputProps {
   name: string;
   type: string;
@@ -9,12 +11,10 @@ interface LoginInputProps {
 
 export default function LoginInput({
   name,
-  type,
-  required,
-  placeholder,
   errors,
-  errorType,
-}: LoginInputProps) {
+  ...rest
+}: LoginInputProps & InputHTMLAttributes<HTMLInputElement>) {
+  console.log(errors);
   return (
     <div className="flex flex-col relative ">
       {name === "email" && (
@@ -58,23 +58,16 @@ export default function LoginInput({
           ></path>
         </svg>
       )}
-
       <input
-        className={` w-96 h-12 px-11 rounded-full  outline-none ring-2 focus:ring-2 ring-neutral-200  focus:outline-none transition mb-5  ${
-          name === errorType ? "ring-red-400" : "ring-neutral-200 "
-        } ${
-          name === errorType
-            ? "focus:ring-4"
-            : "focus:ring-4 focus:ring-neutral-400"
-        }`}
+        className={` w-96 h-12 px-11 rounded-full  outline-none ring-2 focus:ring-2 ring-neutral-200  focus:outline-none transition mb-6  ${
+          errors ? "ring-red-400" : "ring-neutral-200 "
+        } ${errors ? "focus:ring-4" : "focus:ring-4 focus:ring-neutral-400"}`}
         name={name}
-        placeholder={placeholder}
-        required={required}
-        type={type}
+        {...rest}
       ></input>
-      {name === errorType &&
+      {errors &&
         errors?.map((error, index) => (
-          <span className="text-red-400 -mt-2 mb-3 transition-all " key={index}>
+          <span className="text-red-400 -mt-2 my-5 transition-all " key={index}>
             {error}
           </span>
         ))}

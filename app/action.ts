@@ -1,24 +1,31 @@
 "use server";
+import { z } from "zod";
 
-interface FormState {
-  errors: string[];
-  errorType: string;
-  login: boolean;
-}
+const emailRegex = new RegExp(/^[a-zA-Z0-9._%+-]+@zod\.com$/);
+const passwordRegex = new RegExp(/^(?=.*[0-9]).*$/);
 
-export async function handleForm(prevstate: FormState, formData: FormData) {
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-  if (formData.get("password") === "12345") {
-    return {
-      errors: [],
-      errorType: "",
-      login: true,
-    };
+const formSchema = z.object({
+  email: z
+    .string()
+    .email()
+    .regex(emailRegex, "Only @zod.com emails are allowed"),
+  username: z.string().min(4, "Username should be at least 5 characters long"),
+  password: z
+    .string()
+    .min(10, "Password should be at least 10 characters long")
+    .regex(passwordRegex, "Password should contain at least one number"),
+});
+
+export async function handleForm(prevstate: any, formData: FormData) {
+  const data = {
+    email: formData.get("email"),
+    username: formData.get("username"),
+    password: formData.get("password"),
+  };
+  const result = formSchema.safeParse(data);
+  if (!result.success) {
+    return result.error.flatten();
   } else {
-    return {
-      errors: ["Wrong Password"],
-      errorType: "password",
-      login: false,
-    };
+    console.log(result.data);
   }
 }

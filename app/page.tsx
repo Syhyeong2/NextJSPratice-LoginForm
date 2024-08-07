@@ -7,11 +7,8 @@ import LoginBtn from "@/components/login-btn";
 import { redirect } from "next/navigation";
 
 export default function Home() {
-  const [state, action] = useFormState(handleForm as any, {
-    errors: [],
-    errorType: "",
-    login: false,
-  });
+  const [state, action] = useFormState(handleForm, null);
+  console.log(state);
 
   return (
     <div className="flex flex-col justify-center items-center mt-24">
@@ -35,29 +32,26 @@ export default function Home() {
           placeholder="Email"
           type="email"
           required={true}
-          errors={state.errors}
-          errorType={state.errorType}
+          errors={state?.fieldErrors.email}
         />
         <LoginInput
           name="username"
           placeholder="Username"
           type="id"
           required={true}
-          errors={state.errors}
-          errorType={state.errorType}
+          errors={state?.fieldErrors.username}
         />
         <LoginInput
           name="password"
           placeholder="Password"
           type="password"
           required={true}
-          errors={state.errors}
-          errorType={state.errorType}
+          errors={state?.fieldErrors.password}
         />
 
-        <LoginBtn Login={state.login} />
+        <LoginBtn Login={state === undefined} />
       </form>
-      {state.login && (
+      {state === undefined && (
         <div className="w-96 h-16 bg-emerald-500 mt-5 rounded-3xl flex items-center font-semibold gap-4 font-mono">
           <svg
             className="size-7 ml-4"
