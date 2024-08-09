@@ -12,7 +12,7 @@ interface LoginInputProps {
   errorType?: string;
 }
 
-export default function LoginInput({
+export default function FormInput({
   name,
   errors,
   ...rest
@@ -27,6 +27,9 @@ export default function LoginInput({
         <UserIcon className="login-input-icon text-gray-500" />
       )}
       {name === "password" && (
+        <KeyIcon className="login-input-icon text-gray-500" />
+      )}
+      {name === "confirm_password" && (
         <KeyIcon className="login-input-icon text-gray-500" />
       )}
       <input

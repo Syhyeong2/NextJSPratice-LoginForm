@@ -14,7 +14,7 @@ const formSchema = z.object({
     .regex(passwordRegex, "Password should contain at least one number"),
 });
 
-export async function handleForm(prevstate: any, formData: FormData) {
+export async function handleIogin(prevstate: any, formData: FormData) {
   const data = {
     email: formData.get("email"),
     username: formData.get("username"),

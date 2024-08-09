@@ -7,3 +7,10 @@
     @apply size-6 absolute top-3 left-3;
   }
 }
+
+@layer components {
+  .primary-btn {
+    @apply w-96 h-12 rounded-full bg-gray-200 font-bold text-gray-800 
+      hover:bg-gray-300 transition-all disabled:bg-gray-300 disabled:text-gray-400 font-mono flex justify-center items-center;
+  }
+}
