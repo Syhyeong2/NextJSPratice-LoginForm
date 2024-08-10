@@ -17,7 +17,6 @@ export default function FormInput({
   errors,
   ...rest
 }: LoginInputProps & InputHTMLAttributes<HTMLInputElement>) {
-  console.log(errors);
   return (
     <div className="flex flex-col relative ">
       {name === "email" && (
