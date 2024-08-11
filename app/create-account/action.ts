@@ -41,9 +41,11 @@ const formSchema = z
       ),
     username: z
       .string()
-      .min(5, "Username should be at least 5 characters long")
+      .min(3, "Username should be at least 3 characters long")
       .refine(checkUniqueUsername, "This Username is already taken"),
-    password: z.string(),
+    password: z
+      .string()
+      .min(5, "Password should be at least 5 characters long"),
     confirm_password: z.string(),
   })
   .refine(checkPasswords, {
