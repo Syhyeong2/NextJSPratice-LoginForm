@@ -5,8 +5,11 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Login",
-  description: "Login",
+  title: {
+    template: "%s | Candle",
+    default: "Candle",
+  },
+  description: "Candle, for Light up your life",
 };
 
 export default function RootLayout({

@@ -33,6 +33,9 @@ export default async function Home() {
       <Link href={"/profile"} className="primary-btn">
         profile 로그인시에만 보이게
       </Link>
+      <Link href={"/tweets"} className="primary-btn">
+        tweet 로그인시에만
+      </Link>
       {user && <LoginWelcomeBox user={user} />}
     </div>
   );
