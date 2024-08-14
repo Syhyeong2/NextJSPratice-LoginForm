@@ -1,15 +1,18 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Roboto } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const poppins = Roboto({
+  subsets: ["latin"],
+  weight: ["100", "300", "400", "500", "700", "900"],
+});
 
 export const metadata: Metadata = {
   title: {
     template: "%s | Candle",
     default: "Candle",
   },
-  description: "Candle, for Light up your life",
+  description: "Candle, To light up your life",
 };
 
 export default function RootLayout({
@@ -20,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} max-w-screen-sm mx-auto bg-slate-100`}
+        className={`${poppins.className} max-w-screen-xl mx-auto bg-neutral-100`}
       >
         {children}
       </body>

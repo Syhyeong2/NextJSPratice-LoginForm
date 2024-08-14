@@ -6,7 +6,7 @@ interface Routes {
 }
 
 const publicOnlyUrls: Routes = {
-  //  "/": true,
+  "/": true,
   "/log-in": true,
   "/create-account": true,
 };
@@ -15,16 +15,17 @@ export async function middleware(request: NextRequest) {
   const session = await getSession();
   const exists = publicOnlyUrls[request.nextUrl.pathname];
   if (!session.id) {
+    //logged out
     if (!exists) {
       return NextResponse.redirect(new URL("/", request.url));
     }
   } else {
     if (exists) {
-      return NextResponse.redirect(new URL("/", request.url));
+      return NextResponse.redirect(new URL("/tweets", request.url));
     }
   }
 }
 
 export const config = {
-  matcher: ["/((?!_next/static|_next/image|favicon.ico).*)"],
+  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
 };

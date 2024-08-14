@@ -40,6 +40,8 @@ export default function TweetList({ tweet }: TweetProps) {
   };
   return (
     <>
+      <div className="w-full bg-slate-400 h-px"></div>
+
       {tweets.map((tweet, index) => (
         <Link key={index} href={`/tweets/${tweet.id}`}>
           <div className="p-3">
