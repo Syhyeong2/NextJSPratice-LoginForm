@@ -14,3 +14,15 @@
       hover:bg-gray-300 transition-all disabled:bg-gray-300 disabled:text-gray-400 flex justify-center items-center;
   }
 }
+
+@layer utilities {
+  .btn-color {
+    @apply bg-[#38618C];
+  }
+}
+
+@layer utilities {
+  .accent-color {
+    @apply bg-[#ff5964];
+  }
+}

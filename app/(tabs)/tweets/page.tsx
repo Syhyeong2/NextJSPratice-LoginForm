@@ -4,6 +4,7 @@ import AddTweet from "@/components/add-tweet";
 
 export default async function Tweets() {
   const tweet = await getTweet();
+
   return (
     <div>
       <AddTweet />

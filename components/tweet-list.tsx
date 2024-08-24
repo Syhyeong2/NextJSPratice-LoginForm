@@ -41,7 +41,6 @@ export default function TweetList({ tweet }: TweetProps) {
   return (
     <>
       <div className="w-full bg-slate-400 h-px"></div>
-
       {tweets.map((tweet, index) => (
         <Link key={index} href={`/tweets/${tweet.id}`}>
           <div className="p-3">
@@ -50,8 +49,8 @@ export default function TweetList({ tweet }: TweetProps) {
               <div className="font-bold">{tweet.user.username}</div>
             </div>
             <div className="mx-16 my-6	break-words">{tweet.tweet}</div>
-            <div className="w-full bg-slate-400 h-px"></div>
           </div>
+          <div className="w-full bg-slate-400 h-px"></div>
         </Link>
       ))}
       {isLastPage ? (

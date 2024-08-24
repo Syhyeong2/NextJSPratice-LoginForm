@@ -31,10 +31,11 @@ model Tweet {
 }
 
 model Like {
-  id Int @id @default(autoincrement())
-  user User @relation(fields: [userId], references: [id])
-  userId Int
-  tweet Tweet @relation(fields: [tweetId], references: [id])
-  tweetId Int
   created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  user User @relation(fields: [userId], references: [id])
+  tweet Tweet @relation(fields: [tweetId], references: [id])
+  userId Int
+  tweetId Int
+  @@id(name: "id", [userId, tweetId])
 }

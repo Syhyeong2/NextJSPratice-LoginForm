@@ -3,8 +3,6 @@ import { useFormState } from "react-dom";
 import { handleIogin } from "./action";
 import FormInput from "../../../components/form-input";
 import FormBtn from "@/components/form-btn";
-import { FireIcon } from "@heroicons/react/16/solid";
-import LoginWelcomeBox from "@/components/login-welcome-box";
 import Logo from "@/components/logo";
 
 export default function Login() {

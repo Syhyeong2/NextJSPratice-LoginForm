@@ -2,6 +2,7 @@
 
 import db from "@/lib/db";
 import getSession from "@/lib/session";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 
@@ -34,7 +35,7 @@ export async function getTweet() {
       tweet: true,
       created_at: true,
     },
-    take: 3,
+    take: 4,
     orderBy: {
       created_at: "desc",
     },
@@ -62,6 +63,7 @@ export async function uploadTweet(prev: any, formData: FormData) {
           },
         },
       });
+      redirect("tweets");
     }
   }
 }
