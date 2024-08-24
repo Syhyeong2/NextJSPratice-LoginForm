@@ -80,7 +80,6 @@ export default async function TweetDetail({
     id,
     session.id as number
   );
-  console.log(likeCount, isLiked);
   return (
     <div className="p-5 h-screen">
       <div>{tweet?.user.username}</div>
