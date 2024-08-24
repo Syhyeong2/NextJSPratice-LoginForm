@@ -18,8 +18,8 @@ export async function getMoreTweets(page: number) {
       tweet: true,
       created_at: true,
     },
-    skip: page * 3,
-    take: 3,
+    skip: page * 4,
+    take: 4,
     orderBy: {
       created_at: "desc",
     },

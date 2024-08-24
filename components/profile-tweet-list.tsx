@@ -1,5 +1,6 @@
 "use client";
 
+import { getMoreUsersTweets } from "@/app/(tabs)/profile/[id]/action";
 import { getMoreTweets } from "@/app/(tabs)/tweets/action";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -23,14 +24,15 @@ interface TweetListProps {
   }[];
 }
 
-export default function TweetList({ tweet }: TweetListProps) {
+export default function ProfileTweetList({ tweet }: TweetListProps) {
   const [tweets, setTweets] = useState(tweet);
   const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(0);
   const [isLastPage, setIsLastPage] = useState(false);
+  const userId = tweet[0].user.id;
   const onLoadMoreClick = async () => {
     setIsLoading(true);
-    const newTweets = await getMoreTweets(page + 1);
+    const newTweets = await getMoreUsersTweets(page + 1, userId);
     if (newTweets.length !== 0) {
       setPage((prev) => prev + 1);
       setTweets((prev) => [...prev, ...newTweets]);

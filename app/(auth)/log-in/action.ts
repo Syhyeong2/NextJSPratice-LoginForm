@@ -67,7 +67,7 @@ export async function handleIogin(prevstate: any, formData: FormData) {
       const session = await getSession();
       session.id = user!.id;
       await session.save();
-      redirect("/profile");
+      redirect("/tweets");
     } else {
       const fieldErrors: FieldErrors = {};
       fieldErrors.password = ["Wrong password."];
