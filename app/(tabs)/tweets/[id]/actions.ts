@@ -31,3 +31,24 @@ export async function dislikeTweet(tweetId: number) {
     revalidateTag(`like-status-${tweetId}`);
   } catch (e) {}
 }
+
+export async function getDetailTweet(id: number) {
+  try {
+    const tweet = await db.tweet.findUnique({
+      where: {
+        id,
+      },
+      include: {
+        user: {
+          select: {
+            username: true,
+            avatar: true,
+          },
+        },
+      },
+    });
+    return tweet;
+  } catch (e) {
+    return null;
+  }
+}

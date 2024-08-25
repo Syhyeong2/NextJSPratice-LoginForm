@@ -1,7 +1,7 @@
 import db from "@/lib/db";
 import getSession from "@/lib/session";
 import { notFound } from "next/navigation";
-import { dislikeTweet, likeTweet } from "./actions";
+import { dislikeTweet, getDetailTweet, likeTweet } from "./actions";
 import LikeBtn from "@/components/like-btn";
 import { unstable_cache as nextCache, revalidateTag } from "next/cache";
 
@@ -11,27 +11,6 @@ async function getIsOwner(userId: number) {
     return session.id === userId;
   }
   return false;
-}
-
-export async function getDetailTweet(id: number) {
-  try {
-    const tweet = await db.tweet.findUnique({
-      where: {
-        id,
-      },
-      include: {
-        user: {
-          select: {
-            username: true,
-            avatar: true,
-          },
-        },
-      },
-    });
-    return tweet;
-  } catch (e) {
-    return null;
-  }
 }
 
 async function getLikeStatus(tweetId: number, userId: number) {
