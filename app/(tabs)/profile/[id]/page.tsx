@@ -28,7 +28,7 @@ export default async function Profile({ params }: { params: { id: string } }) {
   return (
     <div className="h-screen p-5">
       <div className="w-full text-4xl font-extrabold m-3">
-        This is {user?.username}'s Profile
+        This is {user?.username}s Profile
       </div>
       <div className="m-3">{user.bio}</div>
       {session.id === profileId && (
