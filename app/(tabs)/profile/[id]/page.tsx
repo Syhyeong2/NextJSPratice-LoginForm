@@ -39,7 +39,11 @@ export default async function Profile({ params }: { params: { id: string } }) {
           Edit
         </Link>
       )}
-      <ProfileTweetList tweet={tweets} />
+      {tweets.length === 0 ? (
+        <div>there is no tweet</div>
+      ) : (
+        <ProfileTweetList tweet={tweets} />
+      )}
     </div>
   );
 }
