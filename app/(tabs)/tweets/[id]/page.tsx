@@ -5,7 +5,7 @@ import { dislikeTweet, likeTweet } from "./actions";
 import LikeBtn from "@/components/like-btn";
 import { unstable_cache as nextCache, revalidateTag } from "next/cache";
 
-export async function getIsOwner(userId: number) {
+async function getIsOwner(userId: number) {
   const session = await getSession();
   if (session.id) {
     return session.id === userId;
