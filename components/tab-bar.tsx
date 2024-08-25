@@ -26,11 +26,11 @@ export default async function TabBar() {
         <div className="hidden sm:block">Home</div>
       </Link>
       <Link
-        href={"/"}
+        href={"/search"}
         className="flex items-center sm:gap-2 hover:bg-slate-200 sm:p-2 rounded-xl transition-colors"
       >
         <HomeIcon className="size-8" />
-        <div className="hidden sm:block">Explore</div>
+        <div className="hidden sm:block">Search</div>
       </Link>
       <Link
         href={`/profile/${session.id}`}
